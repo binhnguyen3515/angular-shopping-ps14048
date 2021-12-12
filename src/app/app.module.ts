@@ -15,7 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { DatePipe } from '@angular/common';
 import {GlobalVariable} from 'src/app/common/globalVariable';
 export function HttpLoaderFactory(http:HttpClient){
-  return new TranslateHttpLoader(http,GlobalVariable.baseI18nUrl, '.json');
+  return new TranslateHttpLoader(http,'./assets/i18n/', '.json');
 }
 
 @NgModule({
