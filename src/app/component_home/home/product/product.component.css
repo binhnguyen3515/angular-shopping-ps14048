@@ -1,0 +1,23 @@
+* Custom height and centering polyItem */
+.poly-item{
+	border:solid 1px var(--mainColor);
+}
+.poly-item img{
+	height: 150px;
+	max-width: 95%;
+}
+.poly-item .card-title{
+	font-weight: bold;
+	color: white;
+	margin-top: 8px;
+}
+.poly-item{
+	height:100%;
+}
+.poly-item .card-header{
+	height:100%;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+}
+/* Custom height and centering polyItem Edge*/

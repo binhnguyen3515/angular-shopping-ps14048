@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark borderBottom">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/home/product']" routerLinkActive="router-link-active" >A-Shop</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{'MENU.lang'|translate}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item language" (click)="picklanguage('vi')" style="cursor: pointer"><i class="vietnam flag"></i>{{'MENU.selectVI'|translate}}</a></li>
+            <li><a class="dropdown-item language" (click)="picklanguage('en')" style="cursor: pointer"><i class="united states flag"></i>{{'MENU.selectEN'|translate}}</a></li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="showUsername!='You'">
+          <a class="nav-link" [routerLink]="['/home/orders']" routerLinkActive="router-link-active">{{'MENU.orders'|translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/admin']" routerLinkActive="router-link-active">{{'MENU.admin'|translate}}</a>
+        </li>
+        <li class="nav-item" *ngIf="showUsername=='You'">
+          <a class="nav-link" [routerLink]="['/home/login']" routerLinkActive="router-link-active" >{{'MENU.login'|translate}}</a>
+        </li>
+        <li class="nav-item" *ngIf="showUsername!='You'">
+          <a class="nav-link" (click)="logout()" style="cursor: pointer">{{'MENU.logout'|translate}}</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav d-flex mb-0 text-white">
+        <li class="nav-item me-0">
+          <a class="nav-link" style="cursor: pointer">
+            Welcome {{showUsername}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,36 @@
+<div class="card border border-1 border-primary mt-3">
+  <div class="card-header bg-primary text-white">
+    <h2 class="my-2">YOUR ORDERS PURCHASED</h2>
+  </div>
+  <table class="table table-bordered mb-0">
+    <thead class="bg-warning">
+      <tr>
+        <th>No.</th>
+        <th>Order No.</th>
+        <th>Order Date</th>
+        <th>Shipping Address</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="orderList;else loading">
+      <tr *ngFor="let item of orderList; index as i">
+        <td>{{i+1}}</td>
+        <td>{{item.id}}</td>
+        <td>{{item.createDate|date:'dd-MM-yyyy'}}</td>
+        <td>{{item.address}}</td>
+        <td>
+          <a [routerLink]="['/home/orderInfo',{id:item.id}]"  style="cursor: pointer;" class="btn btn-secondary">
+            <b><i class="fa-solid fa-magnifying-glass"></i></b>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+    <ng-template #loading>
+      <tbody>
+        <tr>
+        <td colspan="5"><div class="loader mx-auto" style="zoom: 1;"></div></td>
+        </tr>
+      </tbody>
+      </ng-template>
+  </table>
+</div>

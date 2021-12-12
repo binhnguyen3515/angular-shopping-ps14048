@@ -1,0 +1,9 @@
+<div class="list-group mainBorder rounded-0 mt-3">
+	<a class="list-group-item list-group-item-action mainColor text-white fw-bold borderBottom" aria-current="true">
+	  <b><i class="fa-solid fa-filter me-2"></i></b> {{'SORT.sortBy'|translate}}
+	</a>
+	<a class="list-group-item list-group-item-action" (click)="sendMessage('priceDown')" style="cursor: pointer"><b><i class="fa-solid fa-arrow-down-9-1 me-2"></i></b>{{'SORT.priceDown'|translate}}</a>
+	<a class="list-group-item list-group-item-action" (click)="sendMessage('priceUp')" style="cursor: pointer"><b><i class="fa-solid fa-arrow-up-1-9 me-2"></i></b>{{'SORT.priceUp'|translate}}</a>
+	<a class="list-group-item list-group-item-action" (click)="sendMessage('newDate')" style="cursor: pointer"><b><i class="fa-solid fa-arrow-down-a-z me-2"></i></b>{{'SORT.newDate'|translate}}</a>
+	<a class="list-group-item list-group-item-action" (click)="sendMessage('oldDate')" style="cursor: pointer"><b><i class="fa-solid fa-arrow-up-z-a me-2"></i></b>{{'SORT.oldDate'|translate}}</a>
+</div>

@@ -1,0 +1,43 @@
+<div class="card mx-2 rounded-0">
+	<div class="card-header rounded-0">
+		<h2 class="my-2">PRODUCT LIST</h2>
+	</div>
+    <div class="card-body">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered">
+        	<thead class="bg-success text-white" style="font-variant: small-caps;">
+        		<tr>
+        			<th>ID</th>
+        			<th>Name</th>
+        			<th>Price</th>
+        			<th>Date</th>
+        			<th>Image</th>
+        			<th>Category</th>
+        			<th>Available?</th>
+        			<th></th>
+        		</tr>
+        	</thead>
+        	<tbody *ngIf="products;else loading">
+        		<tr *ngFor="let item of products">
+        			<td>{{item.id}}</td>
+        			<td>{{item.name}}</td>
+        			<td class="text-end">{{item.price|currency}}</td>
+        			<td>{{item.createDate|date:'dd-MM-yyyy'}}</td>
+        			<td>{{item.image}}</td>
+        			<td>{{item.category.name}}</td>
+        			<td>{{item.available?'Yes':'No'}}</td>
+        			<td class="text-center">
+        				<button (click)="edit(item)" class="btn btn-warning me-2"><i class="fa-solid fa-square-pen"></i></button>
+        				<button (click)="delete(item.id)" c class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
+        			</td>
+        		</tr>
+        	</tbody>
+          <ng-template #loading>
+            <tbody>
+              <tr>
+                <td colspan="8"><div class="loader mx-auto" style="zoom: 1;"></div></td>
+              </tr>
+            </tbody>
+          </ng-template>
+        </table>
+    </div>
+</div>

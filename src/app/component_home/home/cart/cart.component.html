@@ -1,0 +1,74 @@
+<div class="card mt-3 border border-1 border-primary">
+  <div class="card-header bg-primary text-white">
+    <h2 class="my-2">SHOPPING CART</h2>
+  </div>
+  <div class="card-body p-0" *ngIf="cartItems;else loading">
+    <table class="table table-bordered mb-0">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Amount</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.price | currency}}</td>
+          <td><input (input)="quantityChange($event.target,item)" [value]="item.quantity" oninput="validity.valid||(value='');" type="number" min="1" style="width:100px;"></td>
+          <td>{{item.price*item.quantity | currency}}</td>
+          <td>
+            <button (click)="remove(item.id)" class="btn btn-danger">
+              <i class="fa-solid fa-trash"></i> Clear
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #loading>
+    <main class="mt-3 d-flex h-100 align-items-center">
+      <div class="loader mx-auto" style="zoom: 0.5;"></div>
+    </main>
+  </ng-template>
+  <div class="card-footer">
+    <button (click)="clear()" class="btn btn-danger">
+      <i class="fa-solid fa-trash"></i> Clear
+    </button>
+    <a (click)="checkout()" class="btn btn-success ms-2">
+      <i class="fa-solid fa-circle-check"></i> Checkout
+    </a>
+  </div>
+</div>
+<main class="mt-3" *ngIf="showCheckOut">
+  <form [formGroup]="purchaseForm" (ngSubmit)="purchase()" class="card border border-1 border-primary mt-3">
+    <div class="card-header bg-primary text-white">
+      <h2 class="my-2">ORDER PURCHASING</h2>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="form-group col-sm-6">
+          <label>Purchaser:</label>
+          <input class="form-control" id="username" formControlName="username" readonly>
+        </div>
+        <div class="form-group col-sm-6">
+          <label>Order Date:</label>
+          <input class="form-control" formControlName="createDate" readonly>
+        </div>
+      </div>
+      <div class="row mt-2">
+          <div class="form-group">
+            <label>Shipping Address:</label>
+            <textarea rows="3" cols="10" class="form-control" formControlName="address"></textarea>
+          </div>
+      </div>
+    </div>
+    <div class="card-footer text-end">
+      <button class="btn btn-success">Purchase</button>
+    </div>
+  </form>
+</main>

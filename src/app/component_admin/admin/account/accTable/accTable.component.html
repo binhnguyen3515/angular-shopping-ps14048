@@ -1,0 +1,39 @@
+<div class="card mx-2 rounded-0">
+	<div class="card-header">
+		<h2 class="my-2">ACCOUNT LIST</h2>
+	</div>
+    <div class="card-body">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered">
+        	<thead class="bg-success text-white" style="font-variant: small-caps;">
+        		<tr>
+        			<th>User-name</th>
+        			<th>Full-Name</th>
+        			<th>Email</th>
+        			<th>Photo</th>
+        			<th></th>
+        		</tr>
+        	</thead>
+        	<tbody *ngIf="accounts;else loading">
+        		<tr *ngFor="let item of accounts">
+        			<td>{{item.username}}</td>
+        			<td>{{item.fullname}}</td>
+        			<td>{{item.email}}</td>
+        			<td>{{item.photo}}</td>
+        			<td class="text-center">
+        				<button (click)="edit(item)" class="btn btn-warning"><i class="fa-solid fa-square-pen"></i></button>
+        			</td>
+        		</tr>
+        	</tbody>
+			<ng-template #loading>
+				<tbody>
+				  <tr>
+					<td colspan="5"><div class="loader mx-auto" style="zoom: 1;"></div></td>
+				  </tr>
+				</tbody>
+			  </ng-template>
+        </table>
+    </div>
+    <div class="card-footer text-center">
+    
+    </div>
+</div>

@@ -1,0 +1,158 @@
+<div class="col-sm mt-3 mx-3">
+	<div *ngIf="firstRow;else loading" class="summaryInfo row">
+	    <div class="col-md-3">
+	        <div class="card bg-green rounded-0 mb-1">
+	            <h1 class="fw-bold ps-2 mt-1 mb-0">{{firstRow.todayOrder}}</h1>
+	            <div class="ps-2 mt-1">NEW ORDERS</div>
+	            <h3 class="ps-2 mt-1 mb-1">Total: {{firstRow.totalOrder}}</h3>
+	            <i class="fas fa-shopping-cart"></i>
+	        </div>
+	    </div>
+	    <div class="col-md-3 ">
+	        <div class="card bg-aqua rounded-0 mb-1">
+	            <h1 class="fw-bold ps-2 mt-1 mb-0">{{firstRow.available}}</h1>
+	            <div class="ps-2 mt-1">AVAILABLE</div>
+	            <h3 class="ps-2 mt-1 mb-1">Total: {{firstRow.totalProduct}}</h3>
+	            <i class="fas fa-eye"></i>
+	        </div>
+	    </div>
+	    <div class="col-md-3 ">
+	        <div class="card bg-yellow1 rounded-0 mb-1">
+	            <h1 class="fw-bold ps-2 mt-1 mb-0">{{firstRow.todayIncome | number: '1.0-0'}}</h1>
+	            <div class="ps-2 mt-1">INCOME</div>
+	            <h3 class="ps-2 mt-1 mb-1">Total: {{firstRow.totalIncome | number: '1.0-0'}}</h3>
+	            <i class="fas fa-money-bill"></i>
+	        </div>
+	    </div>
+	    <div class="col-md-3 ">
+	        <div class="card bg-red rounded-0">
+	            <h1 class="fw-bold ps-2 mt-1 mb-0">{{firstRow.totalCustomer}}</h1>
+	            <div class="ps-2 mt-1">TOTAL CUSTOMER</div>
+	            <h3 class="ps-2 mt-1 mb-1">Total Acc: {{firstRow.totalAccount}}</h3>
+	            <i class="fas fa-users"></i>
+	        </div>
+	    </div>
+	</div>
+	<ng-template #loading>
+		<div class="loader mx-auto" style="zoom: 1;"></div>
+	</ng-template>
+
+	<!-- Second row content -->
+	<div class="secondRowContent row">
+		<div class="col-6 mt-2">
+	         <div class="card border-0 mb-2">
+	             <div class="card-header bg-white2 border-0">
+	                 <h5 class="card-title text-white badge bg-primary fs-6 mb-0">
+	                     Revenue $
+	                 </h5>
+	                 <small class="d-block">Last 7 days</small>
+	             </div>
+	             <div class="card-body">
+	                 <canvas id="myChart21" #myChart21></canvas>
+	             </div>
+	         </div>
+	     </div>
+	     <div class="col-6 mt-2">
+	         <div class="card border-0 mb-2">
+	             <div class="card-header bg-white2 border-0">
+	                 <h5 class="card-title text-white badge bg-primary fs-6 mb-0">
+	                     Number of Products Sold By Categories
+	                 </h5>
+	                 <small class="d-block">Last 365 days</small>
+	             </div>
+	             <div class="card-body">
+	                 <canvas id="myChart22" #myChart22></canvas>
+	             </div>
+	         </div>
+	     </div>
+	</div>
+	<!-- Third Row content -->
+	<div class="thirdRowContent row">
+		<div class="col-4 mt-2">
+			<div class="card border-0 mb-2 h-100">
+				<div class="card-header bg-white2 border-0">
+					<h5 class="card-title text-white badge bg-primary fs-6 mb-0">
+						Number of Products Sold By Categories
+					</h5>
+					<small class="d-block">In total</small>
+				</div>
+				<div class="card-body">
+					<canvas id="myChart31" #myChart31></canvas>
+				</div>
+			</div>
+		</div>
+		<div class="col-8 mt-2">
+			<div class="card border-0 mb-2 h-100">
+				<div class="card-header bg-white2 border-0">
+					<h5 class="card-title text-white badge bg-primary fs-6 mb-0">
+						Available/Unavailable Products By Category Name
+					</h5>
+					<small class="d-block">In total</small>
+				</div>
+				<div class="card-body">
+					<canvas id="myChart32" #myChart32></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Fourth Row content -->
+	<div class="forthRowContent row mt-3">
+		<div class="col mt-2">
+	         <div class="card border-0 mb-2">
+	         	<div class="card-header bg-white2 border-0">
+	                 <h5 class="card-title text-white badge bg-primary fs-6 mb-0">
+	                     Top 10 Sold Products
+	                 </h5>
+	                 <small class="d-block">In total</small>
+	             </div>
+	             <div class="card-body">
+	                 <canvas id="myChart41" #myChart41></canvas>
+	             </div>
+	         </div>
+	     </div>
+	</div>
+	<!-- Fifth Row content -->
+	<div class="fifthRowContent row">
+		<div class="col mt-2">
+	         <div class="card border-0 mb-2">
+	         	<div class="card-header bg-white2 border-0">
+	                 <h5 class="card-title text-white badge bg-primary fs-6 mb-0">
+	                     Top Customer
+	                 </h5>
+	                 <small class="d-block">In total</small>
+	             </div>
+	             <div class="card-body">
+	                 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered" id="tableTopCustomer">
+	                 	<thead>
+	                 		<tr>
+	                 			<th>#</th>
+	                 			<th>Id/Username</th>
+	                 			<th>Full-name</th>
+	                 			<th>Email</th>
+	                 			<th>Photo</th>
+	                 			<th>Total Payment ($)</th>
+	                 		</tr>
+	                 	</thead>
+	                 	<tbody *ngIf="fifRowData;else loading5">
+	                 		<tr *ngFor="let item of fifRowData,let i = index">
+	                 			<th>{{i+1}}</th>
+	                 			<th><img [src]="avatarUrl+item[3]" class="rounded-circle me-2" height="60px" width="60px">{{item[0]}}</th>
+	                 			<th>{{item[1]}}</th>
+	                 			<th>{{item[2]}}</th>
+	                 			<th>{{item[3]}}</th>
+	                 			<th class="text-end">{{item[4]| number: '1.0-0'}}</th>
+	                 		</tr>
+	                 	</tbody>
+						 <ng-template #loading5>
+							<tbody>
+							  <tr>
+								<td colspan="6"><div class="loader mx-auto" style="zoom: 1;"></div></td>
+							  </tr>
+							</tbody>
+						  </ng-template>
+	                 </table>
+	             </div>
+	         </div>
+	     </div>
+	</div>
+</div>

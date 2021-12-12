@@ -1,0 +1,52 @@
+<main class="poly-item-detail">
+  <div class="" *ngIf="detailProduct!=undefined;else loading">
+    <div class="card mt-3">
+      <div class="card-body text-center border border-1 border-dark rounded-0">
+        <img src="{{GlobalVariable}}{{detailProduct.image}}">
+      </div>
+    </div>
+    <div class="card mt-3 border border-1 border-dark rounded-0">
+      <div class="card-body">
+        <ul>
+          <li>{{detailProduct.name}}</li>
+          <li>{{detailProduct.price | currency}}</li>
+          <li>{{detailProduct.createDate | date:'dd-MM-yyyy'}}</li>
+          <li>{{detailProduct.category.name}}</li>
+        </ul>
+      </div>
+      <div class="card-footer d-flex justify-content-end">
+        <button class="btn btn-success" (click)="addToCart(detailProduct)" [ngClass]="{'disabled':!detailProduct.available}">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <ng-template #loading>
+    <div class="card mt-3">
+      <main class="my-3 d-flex h-100 align-items-center">
+        <div class="loader mx-auto" style="zoom: 0.5;"></div>
+      </main>
+    </div>
+   </ng-template>
+  <div class="">
+    <div class="card mt-3 ">
+      <div class="card-header bg-primary text-white rounded-0">
+        <h2 class="my-2">HÀNG CÙNG LOẠI</h2>
+      </div>
+      <div class="card-body" *ngIf="products;else loading2">
+        <ul>
+          <li *ngFor="let p of products">
+            <a [routerLink]="['/home/detail',p.id]">{{p.name}}</a>
+          </li>
+        </ul>
+      </div>
+      <ng-template #loading2>
+        <div class="card mt-3">
+          <main class="my-3 d-flex h-100 align-items-center">
+            <div class="loader mx-auto" style="zoom: 0.5;"></div>
+          </main>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</main>

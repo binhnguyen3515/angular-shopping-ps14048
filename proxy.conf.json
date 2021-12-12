@@ -1,0 +1,7 @@
+{
+    "/v1/api": {
+      "target": "https://angular-shoppingcart-ps14048.herokuapp.com",
+      "secure": false
+    }
+}
+  

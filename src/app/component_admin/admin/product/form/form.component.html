@@ -1,0 +1,93 @@
+<div [formGroup]="productForm" class="card mx-2 rounded-0">
+  <div class="card-header">
+      <h2 class="my-2">PRODUCT EDITION</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-4 d-flex align-items-center justify-content-center">
+        <label for="image ">
+          <img [src]="baseHostImageUrl+productForm.get('image')!.value" style="max-width: 100%" height="150px" />
+        </label>
+      </div>
+      <div class="col-sm-8">
+        <div class="row my-1">
+          <div class="form-group col-sm-6">
+            <label>Name</label>
+            <input formControlName="name" class="form-control" />
+            <div *ngIf="name!.invalid && (name!.dirty||name!.touched )" class="text-danger fw-bold">
+              <div *ngIf="name!.errors?.required">
+                Product name is required
+              </div>
+              <div *ngIf="name!.errors?.minlength">
+                Product name is 3 characters at least
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>Price</label>
+            <input formControlName="price"  class="form-control" type="number" oninput="validity.valid||(value=0);" min=0 required/>
+            <div *ngIf="price!.invalid && (price!.dirty||price!.touched)" class="text-danger fw-bold">
+              <div *ngIf="price!.errors?.['required']">
+                Price is required
+              </div>
+              <div *ngIf="price!.errors?.['min']">
+                Price must be 0 at least
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row my-1">
+          <div class="form-group col-sm-6">
+            <label>Image</label>
+            <input type="file" class="form-control" (change)="selectFile($event)">
+            <input type="hidden" formControlName="image" class="form-control">
+          </div>
+          <div class="form-group col-sm-6" formGroupName="category">
+            <label>Category</label>
+            <select class="form-control" formControlName="id" required>
+              <option *ngFor="let c of cateGory;let i = index" [value]="c.id">{{c.name}}</option>
+            </select>
+            <div *ngIf="categoryId!.invalid && (categoryId!.dirty||categoryId!.touched)" class="text-danger fw-bold">
+              <div *ngIf="categoryId!.errors?.['required']">
+                Select a category!
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row my-1">
+          <div class="form-group col-sm-6 my-1">
+            <label>Create Date</label>
+            <input formControlName="createDate" type="date" class="form-control" />
+          </div>
+          <div class="form-group col-sm-6 my-1">
+            <label>Available</label>
+            <div class="form-control ">
+              <div class="form-check ps-0">
+                <input formControlName="available" class="form-check-input1" name="available" [value]="true" type="radio" id="inlineFormCheck">
+                <label class="form-check-label ms-1" for="inlineFormCheck">
+                  Yes
+                </label>
+                <input formControlName="available" class="form-check-input2 ms-2" name="available" [value]="false" type="radio" id="inlineFormCheck2">
+                <label class="form-check-label ms-1" for="inlineFormCheck2">
+                  No
+                </label>
+              </div>
+              
+            </div>
+            <div *ngIf="available!.invalid && (available!.dirty||available!.touched)" class="text-danger fw-bold">
+              <div *ngIf="available!.errors?.['required']">
+                Select one available option!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-center">
+    <button (click)="create()" [disabled]="disabled" class="btn btn-primary mx-1"><b class="fa-solid fa-square-plus"></b> Create</button>
+    <button (click)="update()" [disabled]="!disabled" class="btn btn-success mx-1"><b class="fa-solid fa-square-pen"></b> Update</button>
+    <button (click)="delete()" [disabled]="!disabled" class="btn btn-danger mx-1"><b class="fa-solid fa-trash-can"></b> Delete</button>
+    <button (click)="reset()" class="btn btn-info mx-1"><b class="fa-solid fa-rotate"></b> Reset</button>
+  </div>
+</div>

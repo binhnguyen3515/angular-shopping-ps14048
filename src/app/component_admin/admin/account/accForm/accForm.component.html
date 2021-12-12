@@ -1,0 +1,100 @@
+<div [formGroup]="accForm" class="card mx-2 rounded-0">
+  <div class="card-header">
+      <h2 class="my-2">ACCOUNT EDITION</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-4 d-flex align-items-center justify-content-center">
+        <label for="image">
+          <img [src]="baseHostAvatarUrl+photo!.value" style="max-width: 100%" height="150px" />
+        </label>
+      </div>
+      <div class="col-sm-8">
+        <div class="row my-1">
+          <div class="form-group col-sm-6">
+            <label>Username</label>
+            <input formControlName="username" class="form-control" [readonly]="disabled"/>
+            <div *ngIf="username!.invalid && (username!.dirty||username!.touched )" class="text-danger fw-bold">
+              <div *ngIf="username!.errors?.required">
+                Username is required
+              </div>
+              <div *ngIf="username!.errors?.minlength || username!.errors?.maxlength">
+                Username is from 3 to 20 characters
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>Password</label>
+            <input formControlName="password" class="form-control" type="password"/>
+            <div *ngIf="password!.invalid && (password!.dirty||password!.touched )" class="text-danger fw-bold">
+              <div *ngIf="password!.errors?.required">
+                Password is required
+              </div>
+              <div *ngIf="password!.errors?.minlength || password!.errors?.maxlength">
+                Password is from 3 to 20 characters
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row my-1">
+          <div class="form-group col-sm-6">
+            <label>Photo</label>
+            <input type="file" class="form-control" id="photo" (change)="selectFile($event)">
+            <input type="hidden" formControlName="photo" class="form-control">
+          </div>
+          <div class="form-group col-sm-6">
+            <label>Roles</label>
+            <div class="form-control">
+              <div class="form-check ps-0">
+                  <label *ngFor="let r of ROLE,let i = index" class="form-check-label me-2" for="">
+                    <input formArrayName="role" [value]="r" (click)="toggleRole(r)" [checked]="selectedRole.indexOf(r)>-1" class="form-check-input1" type="checkbox" id="inlineFormCheck">
+                    {{r}}
+                 </label>
+              </div>
+            </div>
+            <div *ngIf="role!.invalid  && (role!.dirty||role!.touched )" class="text-danger fw-bold">
+              <div *ngIf="role!.errors?.required">
+                Choose at least 1 role!
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="row my-1">
+          <div class="form-group col-sm-6">
+            <label>Full-name</label>
+            <input formControlName="fullname" class="form-control"/>
+            <div *ngIf="fullname!.invalid && (fullname!.dirty||fullname!.touched )" class="text-danger fw-bold">
+              <div *ngIf="fullname!.errors?.required">
+                Full-name is required
+              </div>
+              <div *ngIf="fullname!.errors?.minlength || fullname!.errors?.maxlength">
+                Full-name is from 3 to 50 characters
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label>Email</label>
+            <input formControlName="email" class="form-control" type="email"/>
+            <div *ngIf="email!.invalid && (email!.dirty||email!.touched )" class="text-danger fw-bold">
+              <div *ngIf="email!.errors?.required">
+                Email is required
+              </div>
+              <div *ngIf="email!.errors?.email">
+                Email is invalid!
+              </div>
+              <div *ngIf="email!.errors?.maxlength">
+                Email is 50 characters maximum
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-center">
+    <button (click)="create()" [disabled]="disabled" class="btn btn-primary mx-1"><b class="fa-solid fa-square-plus"></b> Create</button>
+    <button (click)="update()" [disabled]="!disabled" class="btn btn-success mx-1"><b class="fa-solid fa-square-pen"></b> Update</button>
+    <button (click)="reset()" class="btn btn-info mx-1"><b class="fa-solid fa-rotate"></b> Reset</button>
+  </div>
+</div>
