@@ -5,47 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MenuComponent } from './component_home/menu/menu.component';
-import { HomeComponent } from './component_home/home/home.component';
-import { AdminComponent } from './component_admin/admin/admin.component';
-import { HeaderComponent } from './component_home/header/header.component';
-import { FooterComponent } from './component_home/footer/footer.component';
-import { CartInfoComponent } from './component_home/cart-Info/cart-Info.component';
-import { CategoryComponent } from './component_home/category/category.component';
-import { ProductComponent } from './component_home/home/product/product.component';
 
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { SortComponent } from './component_home/sort/sort.component';
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { DetailProductComponent } from './component_home/home/detailProduct/detailProduct.component';
-import { CartComponent } from './component_home/home/cart/cart.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { DatePipe } from '@angular/common';
-
+import {GlobalVariable} from 'src/app/common/globalVariable';
 export function HttpLoaderFactory(http:HttpClient){
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http,GlobalVariable.baseI18nUrl, '.json');
 }
 
 @NgModule({
   declarations: [	
     AppComponent,
     NotFoundComponent,
-    // HomeComponent
-    // HomeComponent, 
-    // MenuComponent,
-    // HeaderComponent,
-    // FooterComponent,
-    // CartInfoComponent,
-    // CategoryComponent,
-    // ProductComponent,
-    // SortComponent,
-    // DetailProductComponent,
-    // CartComponent,
-    //AdminComponent
-    // AdminComponent,
    ],
   imports: [
     BrowserModule,
