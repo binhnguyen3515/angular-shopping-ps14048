@@ -1,0 +1,21 @@
+{
+    "MENU":{
+        "lang":"Language",
+        "logout":"Log-out",
+        "orders":"Your-Orders",
+        "admin":"Administration",
+        "login":"Login",
+        "selectVI":"Vietnam",
+        "selectEN":"English"
+    },
+    "CATE":{
+        "cate":"Category"
+    },
+    "SORT":{
+        "sortBy":"Sort By",
+        "priceDown":"High to Low (Price)",
+        "priceUp":"Low to High (Price)",
+        "newDate":"Newest Date",
+        "oldDate":"Oldest Date"
+    }
+}

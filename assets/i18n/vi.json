@@ -1,0 +1,21 @@
+{
+    "MENU":{
+        "lang":"Ngôn-ngữ",
+        "logout":"Đăng-xuất",
+        "orders":"Đơn-hàng",
+        "admin":"Quản-trị",
+        "login":"Đăng-nhập",
+        "selectVI":"Tiếng Việt",
+        "selectEN":"Tiếng Anh"
+    },
+    "CATE":{
+        "cate":"Danh mục"
+    },
+    "SORT":{
+        "sortBy":"Bộ lọc",
+        "priceDown":"Giá giảm dần",
+        "priceUp":"Giá tăng dần",
+        "newDate":"Ngày ra mắt (mới)",
+        "oldDate":"Ngày ra mắt (cũ)"
+    }
+}
